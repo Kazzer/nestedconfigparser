@@ -44,15 +44,21 @@ def main():
         long_description = readme_file.read().strip()
 
     setuptools.setup(
-        packages=setuptools.find_packages(
-            exclude=(
-                'tests',
+        packages=tuple(
+            'allya.{}'.format(package)
+            for package in setuptools.find_packages(
+                exclude=(
+                    'tests',
+                ),
             ),
         ),
-        name=PACKAGE_NAME,
+        name='allya.{}'.format(PACKAGE_NAME),
         version=PACKAGE_VERSION,
+        package_dir={
+            'allya': '',
+        },
         author='Kadeem Hassam',
-        author_email='kadeem+p3@gmail.com',
+        author_email='kadeem.hassam@peckypanda.com',
         url='https://github.com/Kazzer/{}'.format(PACKAGE_NAME),
         license='WTFPL',
         description=short_description,
